@@ -26,7 +26,7 @@ let products = [];
 inputCode.addEventListener('input', () => {
     inputCode.value = inputCode.value.toUpperCase();
 
-    if(!checkError(inputCode, (value) =>  value.match(/[^A-Za-z0-9]+/),"El código debe de ser alfanumérico")) return;
+    if (!checkError(inputCode, (value) => value.match(/[^A-Za-z0-9]+/), "El código debe de ser alfanumérico")) return;
 
     const product = getProductByCode(inputCode.value);
 
@@ -44,7 +44,7 @@ inputCode.addEventListener('input', () => {
 });
 
 [inputPrice, inputQuantity].map(input => input.addEventListener('input', () => {
-    if(checkError(input, value => value < 0,"El valor debe de ser mayor de 0")) return;
+    if (checkError(input, value => value < 0, "El valor debe de ser mayor de 0")) return;
 }));
 
 // Form submit event
@@ -84,8 +84,8 @@ const renderTable = () => {
         ['description', 'code', 'price', 'quantity'].map(key => {
             let td = createTD();
             td.classList.add('table__item');
-            if (key === 'code')  td.textContent = product.code;
-            else td.appendChild(createInput('text', key, product[key]));  
+            if (key === 'code') td.textContent = product.code;
+            else td.appendChild(createInput('text', key, product[key]));
             tr.appendChild(td);
         });
 
@@ -121,18 +121,18 @@ const createErrorMessage = (message) => {
 }
 
 // Check Error
-const checkError = (input,callback,message) => {
+const checkError = (input, callback, message) => {
 
     let parent = input.parentElement;
     let error = parent.querySelector('.form__error');
 
-    if(callback(input.value)) {
+    if (callback(input.value)) {
         input.value = input.value.slice(0, -1);
         parent.classList.add('form__group--error');
-        if(!error) parent.appendChild(createErrorMessage(message));
+        if (!error) parent.appendChild(createErrorMessage(message));
         return false;
     }
-    if(error) error.remove();
+    if (error) error.remove();
     parent.classList.remove('form__group--error');
 
     return true;
@@ -162,6 +162,16 @@ const editProduct = (code) => {
     let description = tr.querySelector('input[name="description"]');
     let price = tr.querySelector('input[name="price"]');
     let quantity = tr.querySelector('input[name="quantity"]');
+
+    [price, quantity].map(input => {
+        let { value } = input;
+        value = parseFloat(value);
+        if(value < 0 || isNaN(value)) {
+            input.value = product[input.name];
+            alert('Precio o cantidad inválida');
+            return;
+        }
+    });
 
     product.description = description.value;
     product.price = parseFloat(price.value);
