@@ -1,0 +1,329 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&display=swap");
+* {
+  padding: 0;
+  margin: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+html {
+  font-size: 100%;
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  overflow-x: hidden;
+}
+
+.container, .section {
+  min-height: 100vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+.section {
+  padding: 1em;
+}
+
+.title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: #EF3E36;
+  text-align: center;
+  display: block;
+  width: 100%;
+}
+
+.form {
+  width: 100%;
+  max-width: 600px;
+  padding: 2em;
+  border-radius: 1em;
+  border: 2px solid #EF3E36;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  color: #2E282A;
+}
+
+.form__group {
+  margin-bottom: 1rem;
+  width: 100%;
+}
+
+.form__input {
+  width: 100%;
+  padding: .5em 1em;
+  border-radius: 1em;
+  border: 2px solid #17BEBB;
+  font-size: 1.2rem;
+  color: #2E282A;
+}
+
+.form__input:focus {
+  outline: none;
+}
+
+.form__input[disabled] {
+  background-color: #FAD8D6;
+  color: #2E282A;
+  border: 2px solid #FAD8D6;
+}
+
+.form__label {
+  font-size: 1.2rem;
+  margin-bottom: .5em;
+  display: block;
+  color: #2E282A;
+}
+
+.subtitle {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: #2E282A;
+}
+
+.button {
+  width: 100%;
+  padding: .5em 1em;
+  border-radius: 1em;
+  border: 2px solid #17BEBB;
+  font-size: 1.2rem;
+  color: #2E282A;
+  background-color: #EF3E36;
+  border: 2px solid #EF3E36;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-transition: all .3s;
+  transition: all .3s;
+  cursor: pointer;
+  color: white;
+  font-weight: lighter;
+}
+
+.button:hover {
+  background-color: #ff574c;
+  border: 2px solid #ff574c;
+}
+
+.button--mini {
+  width: 50px;
+}
+
+.table {
+  width: 100%;
+  border-top: 2px solid #EF3E36;
+  border-bottom: 2px solid #EF3E36;
+  color: #2E282A;
+  min-width: 600px;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.table__row {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  text-align: center;
+  border-bottom: 2px solid #EF3E36;
+  width: 100%;
+  padding: 2em 0;
+}
+
+.table__head {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #EF3E36;
+}
+
+.table__title, .table__item {
+  width: 100%;
+}
+
+.table__item input {
+  width: 100%;
+  padding: .5em 1em;
+  border-radius: 1em;
+  border: 2px solid #17BEBB;
+  font-size: 1.2rem;
+  color: #2E282A;
+  background-color: #EF3E36;
+  border: 2px solid #EF3E36;
+  color: #2E282A;
+  font-weight: lighter;
+  text-align: center;
+  border: none;
+  outline: none;
+  background-color: transparent;
+}
+
+.table__item input:focus {
+  outline: none;
+}
+
+.flex {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.results {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  width: 100%;
+  font-size: 1.5rem;
+}
+
+.results__item {
+  width: 100%;
+  text-align: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+#products {
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  padding: 0;
+}
+
+.scrollable {
+  width: 100%;
+  overflow-x: scroll;
+}
+
+@media only screen and (max-width: 970px) {
+  .results {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    margin-top: 1em;
+    gap: 1em;
+  }
+}
+
+@media only screen and (max-width: 970px) {
+  html {
+    font-size: 95%;
+  }
+}
+
+@media only screen and (max-width: 870px) {
+  html {
+    font-size: 90%;
+  }
+}
+
+@media only screen and (max-width: 770px) {
+  html {
+    font-size: 85%;
+  }
+}
+
+@media only screen and (max-width: 670px) {
+  html {
+    font-size: 80%;
+  }
+}
+
+@media only screen and (max-width: 570px) {
+  html {
+    font-size: 75%;
+  }
+}
+
+@media only screen and (max-width: 470px) {
+  html {
+    font-size: 70%;
+  }
+}
+
+@media only screen and (max-width: 370px) {
+  html {
+    font-size: 65%;
+  }
+}
+
+@media only screen and (max-width: 270px) {
+  html {
+    font-size: 60%;
+  }
+}
+
+@media only screen and (max-width: 170px) {
+  html {
+    font-size: 55%;
+  }
+}
+
+@media only screen and (max-width: 70px) {
+  html {
+    font-size: 50%;
+  }
+}
+/*# sourceMappingURL=style.css.map */

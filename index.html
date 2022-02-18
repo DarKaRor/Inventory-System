@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./styles/style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
+    <title>Sistema de Inventario</title>
+</head>
+
+<body>
+    <main class="container">
+        <section class="section">
+            <h1 class="title">Sistema de Inventario</h1>
+            <form class="form">
+                <h2 class="subtitle">Agregar producto</h2>
+                <div class="form__group">
+                    <label for="code" class="form__label">Código</label>
+                    <input type="text" id="code" class="form__input" required>
+                </div>
+                <div class="form__group">
+                    <label for="description" class="form__label">Descripción</label>
+                    <input type="text" id="description" class="form__input" required>
+                </div>
+                <div class="form__group">
+                    <label for="price" class="form__label">Precio</label>
+                    <input type="number" id="price" class="form__input" required>
+                </div>
+                <div class="form__group">
+                    <label for="quantity" class="form__label">Cantidad</label>
+                    <input type="number" id="quantity" class="form__input" required>
+                </div>
+                <button type="submit" class="button">Enviar</button>
+            </form>
+        </section>
+        <section class="section" id="products">
+            <h1 class="title">Productos</h1>
+            <div class="scrollable">
+                <table class="table">
+                    <thead class="table__head">
+                        <tr class="table__row">
+                            <th class="table__title">Descripcion</th>
+                            <th class="table__title">Código</th>
+                            <th class="table__title">Precio</th>
+                            <th class="table__title">Cantidad</th>
+                            <th class="table__title"></th>
+                        </tr>
+                    </thead>
+                    <tbody class="table__body" id="body">
+
+                    </tbody>
+                </table>
+            </div>
+            <div class="results">
+                <div class="results__item" id="total">Total de productos: </div>
+                <div class="results__item" id="value">Valor de inventario: </div>
+                <div class="results__item" id="totalQuantity">Cantidad de productos: </div>
+            </div>
+        </section>
+    </main>
+    <script src="./src/index.js" type="module"></script>
+</body>
+
+</html>

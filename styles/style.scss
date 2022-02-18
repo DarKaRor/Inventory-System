@@ -1,0 +1,231 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&display=swap');
+
+*{
+    padding:0;
+    margin:0;
+    box-sizing:border-box;
+}
+
+html{
+    font-size:100%;
+}
+
+// Variables
+$color-primary: #EF3E36;
+$color-secondary: #17BEBB;
+$black: #2E282A;
+$pink: #FAD8D6;
+
+
+// Mixins
+
+@mixin flex-align($align, $justify){
+    display:flex;
+    align-items:$align;
+    justify-content:$justify;
+}
+
+@mixin item(){
+    width:100%;
+    padding: .5em 1em;
+    border-radius: 1em;
+    border: 2px solid $color-secondary;
+    font-size: 1.2rem;
+    color:$black;
+}
+
+@mixin backgroundBorder($color){
+    background-color:$color;
+    border: 2px solid $color;
+}
+
+@mixin heightAlign(){
+    min-height:100vh;
+    @include flex-align(center, center);
+    flex-direction: column;
+}
+
+// Components
+
+body{
+    font-family: 'Montserrat', sans-serif;
+    overflow-x: hidden;
+}
+
+.container,.section{
+    @include heightAlign();
+    width:100%;
+    overflow-x: hidden;
+}
+
+.section{
+    padding:1em;
+}
+
+.title{
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: $color-primary;
+    text-align: center;
+    display: block;
+    width: 100%;
+}
+
+.form{
+    width:100%;
+    max-width:600px;
+    padding: 2em;
+    border-radius: 1em;
+    border: 2px solid $color-primary;
+    @include flex-align(center, center);
+    flex-direction: column;
+    color:$black;
+
+    &__group{
+        margin-bottom: 1rem;
+        width:100%;
+    }
+
+    &__input{
+        @include item();
+
+        &:focus{
+            outline: none;
+        }
+
+        &[disabled]{
+            background-color:$pink;
+            color:$black;
+            border: 2px solid $pink;
+        }
+    }
+
+    &__label{
+        font-size: 1.2rem;
+        margin-bottom: .5em;
+        display:block;
+        color:$black;
+    }
+
+
+}
+
+.subtitle{
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: $black;
+}
+
+.button{
+    @include item();
+    @include backgroundBorder($color-primary);
+    @include flex-align(center, center);
+    transition: all .3s;
+    cursor:pointer;
+    color:white;
+    font-weight: lighter;
+
+    &:hover{
+        @include backgroundBorder($color-primary * 1.4)
+    }
+
+    &--mini{
+        width: 50px;
+    }
+}
+
+$border: 2px solid $color-primary;
+.table{
+    width:100%;    
+    border-top: $border;
+    border-bottom: $border;
+    color:$black;
+    min-width:600px;
+    display:inline-flex;
+    flex-direction: column;
+
+    &__row{
+        @include flex-align(center, space-between);
+        text-align: center;
+        border-bottom: $border;
+        width:100%;
+        padding: 2em 0;
+    }
+
+    &__head{
+        font-size: 1.2rem;
+        font-weight: 700;
+        color:$color-primary;
+    }
+
+    &__title,&__item{
+        width:100%;
+    }
+
+    &__item{
+        input{
+            @include item();
+            @include backgroundBorder($color-primary);
+            color:$black;
+            font-weight: lighter;
+            text-align: center;
+            border:none;
+            outline:none;
+            background-color:transparent;
+            &:focus{
+                outline: none;
+            }
+        }
+    }
+}
+
+.flex{
+    @include flex-align(center, center);
+}
+
+
+.results{
+    @include flex-align(center, space-between);
+    width:100%;
+    font-size: 1.5rem;
+
+    &__item{
+        width:100%;
+        text-align: center;
+        @include flex-align(center, center);
+    }
+}
+
+#products{
+    align-items: flex-start;
+    padding:0;
+}
+
+.scrollable{
+    width:100%;
+    overflow-x: scroll;
+}
+
+@media only screen and (max-width: 970px){
+    .results{
+        flex-direction: column;
+        margin-top: 1em;
+        gap: 1em;
+    }
+}
+
+$screen: 970px;
+$font-size: 95%;
+
+@while $screen > 0 {
+    @media only screen and (max-width: $screen) {
+        html{
+            font-size: $font-size;
+        }
+    }
+    $screen: $screen - 100px;
+    $font-size: $font-size - 5%;
+}
+
