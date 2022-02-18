@@ -82,14 +82,11 @@ body{
     flex-direction: column;
     color:$black;
 
-    &__group{
-        margin-bottom: 1rem;
-        width:100%;
-    }
+    $transition: all .3s ease-in-out;
 
     &__input{
         @include item();
-
+        transition: $transition;
         &:focus{
             outline: none;
         }
@@ -106,8 +103,32 @@ body{
         margin-bottom: .5em;
         display:block;
         color:$black;
+        
+        transition: $transition;
     }
 
+    &__group{
+        margin-bottom: 1rem;
+        width:100%;
+
+        &--error{
+        
+            .form__label{
+                color: $color-primary;
+            }
+
+            .form__input{
+                border: 2px solid $color-primary;
+            }
+        }
+    }
+
+    &__error{
+        color: $color-primary;
+        font-size: 1.2rem;
+        margin-top: .5em;
+        display:block;
+    }
 
 }
 

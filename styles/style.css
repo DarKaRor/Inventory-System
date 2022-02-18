@@ -70,11 +70,6 @@ body {
   color: #2E282A;
 }
 
-.form__group {
-  margin-bottom: 1rem;
-  width: 100%;
-}
-
 .form__input {
   width: 100%;
   padding: .5em 1em;
@@ -82,6 +77,8 @@ body {
   border: 2px solid #17BEBB;
   font-size: 1.2rem;
   color: #2E282A;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
 }
 
 .form__input:focus {
@@ -99,6 +96,28 @@ body {
   margin-bottom: .5em;
   display: block;
   color: #2E282A;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+
+.form__group {
+  margin-bottom: 1rem;
+  width: 100%;
+}
+
+.form__group--error .form__label {
+  color: #EF3E36;
+}
+
+.form__group--error .form__input {
+  border: 2px solid #EF3E36;
+}
+
+.form__error {
+  color: #EF3E36;
+  font-size: 1.2rem;
+  margin-top: .5em;
+  display: block;
 }
 
 .subtitle {

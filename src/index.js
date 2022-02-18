@@ -26,13 +26,14 @@ let products = [];
 inputCode.addEventListener('input', () => {
     inputCode.value = inputCode.value.toUpperCase();
 
-    const product = products.find(product => product.code === inputCode.value);
+    if(!checkError(inputCode, (value) =>  value.match(/[^A-Za-z0-9]+/),"El código debe de ser alfanumérico")) return;
+
+    const product = getProductByCode(inputCode.value);
 
     if (product) {
         toDisable.map(input => input.disabled = true);
 
         // Fill the inputs with the product's data
-
         inputCode.value = product.code;
         inputDescription.value = product.description;
         inputQuantity.value = product.quantity;
@@ -40,12 +41,16 @@ inputCode.addEventListener('input', () => {
     }
 
     else toDisable.map(input => input.disabled = false);
-
 });
+
+[inputPrice, inputQuantity].map(input => input.addEventListener('input', () => {
+    if(checkError(input, value => value < 0,"El valor debe de ser mayor de 0")) return;
+}));
 
 // Form submit event
 form.addEventListener('submit', (e) => {
     e.preventDefault();
+
     inputs.map(input => input.value = input.value.trim());
 
     let code = inputCode.value.toUpperCase();
@@ -56,7 +61,7 @@ form.addEventListener('submit', (e) => {
     // Clear the inputs
     inputs.map(input => input.value = '');
 
-    let possibleProduct = products.find(product => product.code === code);
+    let possibleProduct = getProductByCode(code);
     if (possibleProduct) {
         possibleProduct.quantity += quantity;
         renderTable();
@@ -77,13 +82,11 @@ const renderTable = () => {
         tr.id = "_" + product.code;
 
         ['description', 'code', 'price', 'quantity'].map(key => {
-            if (key === 'code') tr.innerHTML += "<td class='table__item'>" + product.code + "</td>";
-            else {
-                let td = createTD();
-                td.classList.add('table__item');
-                td.appendChild(createInput('text', key, product[key]));
-                tr.appendChild(td);
-            }
+            let td = createTD();
+            td.classList.add('table__item');
+            if (key === 'code')  td.textContent = product.code;
+            else td.appendChild(createInput('text', key, product[key]));  
+            tr.appendChild(td);
         });
 
         tr.innerHTML += `
@@ -109,7 +112,31 @@ const renderTable = () => {
     renderTotal();
 }
 
+// Error message
+const createErrorMessage = (message) => {
+    let p = document.createElement('p');
+    p.classList.add('form__error');
+    p.textContent = message;
+    return p;
+}
 
+// Check Error
+const checkError = (input,callback,message) => {
+
+    let parent = input.parentElement;
+    let error = parent.querySelector('.form__error');
+
+    if(callback(input.value)) {
+        input.value = input.value.slice(0, -1);
+        parent.classList.add('form__group--error');
+        if(!error) parent.appendChild(createErrorMessage(message));
+        return false;
+    }
+    if(error) error.remove();
+    parent.classList.remove('form__group--error');
+
+    return true;
+}
 
 const deleteLastRowBorder = () => {
     // Select last found element with the class 'table__row'
@@ -130,7 +157,7 @@ const deleteProduct = (code) => {
 
 const editProduct = (code) => {
     let tr = select(`#_${code}`);
-    let product = products.find(product => product.code === code);
+    let product = getProductByCode(code);
 
     let description = tr.querySelector('input[name="description"]');
     let price = tr.querySelector('input[name="price"]');
@@ -173,5 +200,7 @@ const renderTotal = () => {
     totalQuantity.innerHTML = "Cantidad de productos: " + productsQuantity();
     totalValue.innerHTML = "Valor de inventario: $" + inventoryValue();
 }
+
+const getProductByCode = (code) => products.find(product => product.code === code);
 
 renderTotal();
