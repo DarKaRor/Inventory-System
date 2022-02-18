@@ -51,7 +51,7 @@ inputCode.addEventListener('input', () => {
 form.addEventListener('submit', (e) => {
     e.preventDefault();
 
-    inputs.map(input => input.value = input.value.trim());
+    cleanAll(inputs);
 
     let code = inputCode.value.toUpperCase();
     let description = inputDescription.value;
@@ -163,6 +163,8 @@ const editProduct = (code) => {
     let price = tr.querySelector('input[name="price"]');
     let quantity = tr.querySelector('input[name="quantity"]');
 
+    cleanAll([description, price, quantity]);
+
     [price, quantity].map(input => {
         let { value } = input;
         value = parseFloat(value);
@@ -212,5 +214,7 @@ const renderTotal = () => {
 }
 
 const getProductByCode = (code) => products.find(product => product.code === code);
+
+const cleanAll = (inputs) => inputs.map(input => input.value = input.value.trim());
 
 renderTotal();
